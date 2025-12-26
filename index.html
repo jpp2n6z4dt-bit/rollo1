@@ -2,14 +2,53 @@
 <html lang="de">
 <head>
     <meta charset="utf-8">
-    <title>Mein Foto</title>
+    <title>Mein Kunstwerk</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body { margin: 0; padding: 0; background: black; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        img { max-width: 100%; max-height: 100vh; object-fit: contain; }
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background: black; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            cursor: pointer; 
+        }
+        #poster {
+            max-width: 100%;
+            max-height: 100vh;
+            object-fit: contain;
+        }
+        #video {
+            max-width: 100%;
+            max-height: 100vh;
+            object-fit: contain;
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <img src="canto1.jpg" alt="Mein Foto">
+    <img id="poster" src="canto1.jpg" alt="Mein Foto">
+    <video id="video" controls autoplay>
+        <source src="video.mp4" type="video/mp4">
+        Ihr Browser unterstützt kein Video.
+    </video>
+
+    <script>
+        const poster = document.getElementById('poster');
+        const video = document.getElementById('video');
+
+        poster.addEventListener('click', () => {
+            poster.style.display = 'none';
+            video.style.display = 'block';
+            video.play();
+        });
+
+        video.addEventListener('ended', () => {
+            video.style.display = 'none';
+            poster.style.display = 'block';
+        });
+    </script>
 </body>
 </html>
